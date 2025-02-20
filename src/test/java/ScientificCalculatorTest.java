@@ -25,4 +25,11 @@ public class ScientificCalculatorTest {
     public void testSquareRootNegativeNumber() {
         calculator.squareRoot(-4);
     }
+
+    @Test
+    public void testFactorial() {
+        assertEquals(120, calculator.factorial(5));
+        assertEquals(1, calculator.factorial(0));
+        assertThrows(IllegalArgumentException.class, () -> calculator.factorial(-3));
+    }
 }
