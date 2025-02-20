@@ -5,6 +5,6 @@ public class ScientificCalculator {
         if (x < 0) {
             throw new IllegalArgumentException("Square root of a negative number is not defined for real numbers.");
         }
-        return Math.sqrt(x);
+        return Math.sqrt(x+2);
     }
 }
