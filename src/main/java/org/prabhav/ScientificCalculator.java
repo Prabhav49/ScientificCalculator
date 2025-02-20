@@ -23,4 +23,7 @@ public class ScientificCalculator {
         }
         return Math.log(x);
     }
+    public double power(double x, double b) {
+        return Math.pow(x, b);
+    }
 }

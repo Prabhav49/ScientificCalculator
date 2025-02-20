@@ -9,5 +9,7 @@ public class Main {
         System.out.println("Factorial of 25 is: " + fac);
         double nl = calculator.factorial(25);
         System.out.println("Natural Log of 25 is: " + nl);
+        double pow = calculator.power(25, 25);
+        System.out.println("Power of 25 is: " + pow);
     }
 }

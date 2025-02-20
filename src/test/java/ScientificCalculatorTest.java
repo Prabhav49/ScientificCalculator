@@ -40,4 +40,13 @@ public class ScientificCalculatorTest {
         assertThrows(IllegalArgumentException.class, () -> calculator.naturalLog(-1));
         assertThrows(IllegalArgumentException.class, () -> calculator.naturalLog(0));
     }
+
+    @Test
+    public void testPower() {
+        assertEquals(8.0, calculator.power(2, 3), 0.0001);
+        assertEquals(1.0, calculator.power(5, 0), 0.0001);
+        assertEquals(0.25, calculator.power(2, -2), 0.0001);
+        assertEquals(0.0, calculator.power(0, 5), 0.0001);
+    }
+
 }
