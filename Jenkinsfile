@@ -22,16 +22,23 @@ pipeline {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
-                failure {
-                    emailext(
-                        subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                        body: """<p><b>Build Failed:</b> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
-                                 <p>Click <a href="${env.BUILD_URL}">here</a> to view details.</p>""",
-                        to: 'iam49smith@gmail.com'
-                    )
-                }
             }
         }
     }
-}
 
+    post {
+        success {
+            mail to: 'iam49smith@gmail.com',
+                 subject: "Application Deployment SUCCESS: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "The build was successful!"
+        }
+        failure {
+            mail to: 'iam49smith@gmail.com',
+                 subject: "Application Deployment FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "The build failed."
+        }
+        always {
+            cleanWs()
+        }
+    }
+}

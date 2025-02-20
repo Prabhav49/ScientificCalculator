@@ -17,4 +17,10 @@ public class ScientificCalculator {
         }
         return fact;
     }
+    public double naturalLog(double x) {
+        if (x <= 0) {
+            throw new IllegalArgumentException("Natural logarithm is only defined for positive numbers.");
+        }
+        return Math.log(x);
+    }
 }

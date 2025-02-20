@@ -32,4 +32,12 @@ public class ScientificCalculatorTest {
         assertEquals(1, calculator.factorial(0));
         assertThrows(IllegalArgumentException.class, () -> calculator.factorial(-3));
     }
+
+    @Test
+    public void testNaturalLog() {
+        assertEquals(1.0, calculator.naturalLog(Math.E), 0.0001);
+        assertEquals(0.0, calculator.naturalLog(1), 0.0001);
+        assertThrows(IllegalArgumentException.class, () -> calculator.naturalLog(-1));
+        assertThrows(IllegalArgumentException.class, () -> calculator.naturalLog(0));
+    }
 }
