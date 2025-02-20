@@ -25,9 +25,8 @@ pipeline {
                 failure {
                     emailext(
                         subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                        body: """<p>The build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> has failed.</p>
-                                 <p>Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-                        recipientProviders: [developers()],
+                        body: """<p><b>Build Failed:</b> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
+                                 <p>Click <a href="${env.BUILD_URL}">here</a> to view details.</p>""",
                         to: 'iam49smith@gmail.com'
                     )
                 }
@@ -35,3 +34,4 @@ pipeline {
         }
     }
 }
+
