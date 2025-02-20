@@ -1,0 +1,28 @@
+import org.prabhav.ScientificCalculator;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class ScientificCalculatorTest {
+
+    private final ScientificCalculator calculator = new ScientificCalculator();
+
+    @Test
+    public void testSquareRootPositiveNumber() {
+        assertEquals(5.0, calculator.squareRoot(25), 0.0001);
+    }
+
+    @Test
+    public void testSquareRootZero() {
+        assertEquals(0.0, calculator.squareRoot(0), 0.0001);
+    }
+
+    @Test
+    public void testSquareRootSmallNumber() {
+        assertEquals(1.4142, calculator.squareRoot(2), 0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSquareRootNegativeNumber() {
+        calculator.squareRoot(-4);
+    }
+}
