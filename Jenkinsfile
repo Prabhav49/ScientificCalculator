@@ -24,18 +24,30 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Application') {
+            steps {
+                sh 'java -jar target/*.jar'
+            }
+        }
     }
 
     post {
         success {
-            mail to: 'iam49smith@gmail.com',
-                 subject: "Application Deployment SUCCESS: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "The build was successful!"
+            emailext(
+                to: 'iam49smith@gmail.com',
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>The build was <b>successful!</b></p>
+                         <p>Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>"""
+            )
         }
         failure {
-            mail to: 'iam49smith@gmail.com',
-                 subject: "Application Deployment FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "The build failed."
+            emailext(
+                to: 'iam49smith@gmail.com',
+                subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>The build <b>failed!</b></p>
+                         <p>Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>"""
+            )
         }
         always {
             cleanWs()
