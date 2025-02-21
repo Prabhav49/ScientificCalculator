@@ -27,7 +27,7 @@ pipeline {
 
         stage('Run Application') {
             steps {
-                sh 'java -jar target/*.jar'
+                sh 'java -jar target/ScientificCalculator-1.0-SNAPSHOT-jar-with-dependencies.jar 1'
             }
         }
     }
