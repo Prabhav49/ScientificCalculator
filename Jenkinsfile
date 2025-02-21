@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'prabhav49/scientific-calculator:latest'
+        DOCKER_USER = credentials('docker-hub-credentials').username
+        DOCKER_PASS = credentials('docker-hub-credentials').password
     }
 
     stages {
@@ -37,9 +39,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
-                    sh 'docker push $DOCKER_IMAGE'
-                }
+                sh 'docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"'
             }
         }
 
