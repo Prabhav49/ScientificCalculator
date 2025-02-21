@@ -7,6 +7,5 @@ WORKDIR /app
 # Copy the correct JAR file to the container
 COPY target/ScientificCalculator-1.0-SNAPSHOT-jar-with-dependencies.jar app.jar
 
-# Allow both interactive input and arguments
+# Set ENTRYPOINT to allow user input
 ENTRYPOINT ["java", "-jar", "app.jar"]
-CMD []
