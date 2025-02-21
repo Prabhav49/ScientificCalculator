@@ -25,6 +25,12 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t prabhav49/scientific-calculator:latest .'
+            }
+        }
+
         stage('Run Application') {
             steps {
                 sh 'java -jar target/ScientificCalculator-1.0-SNAPSHOT-jar-with-dependencies.jar 1'
