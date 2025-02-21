@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  calculator:
+    image: prabhav49/scientific-calculator:latest
+    container_name: scientific_calculator
+    stdin_open: true
+    tty: true
