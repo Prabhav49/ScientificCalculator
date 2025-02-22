@@ -46,7 +46,7 @@ pipeline {
 
         stage('Run Application') {
             steps {
-                sh 'docker run --rm $DOCKER_IMAGE 1'
+                sh 'docker run --rm $DOCKER_IMAGE 1 25 0'
             }
         }
     }
