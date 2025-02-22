@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'prabhav49/scientific-calculator:latest'
-        ANSIBLE_PLAYBOOK = 'deploy.yml'  // Define the Ansible playbook file
+        ANSIBLE_PLAYBOOK = 'deploy.yml'
     }
 
     stages {
@@ -47,7 +47,12 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-                sh 'ansible-playbook --connection=local --become deploy.yml'
+                script {
+                    def deployStatus = sh(script: 'ansible-playbook --connection=local --become deploy.yml', returnStatus: true)
+                    if (deployStatus != 0) {
+                        error "Deployment failed!"
+                    }
+                }
             }
         }
 

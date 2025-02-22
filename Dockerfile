@@ -7,5 +7,6 @@ WORKDIR /app
 # Copy the correct JAR file to the container
 COPY target/ScientificCalculator-1.0-SNAPSHOT-jar-with-dependencies.jar app.jar
 
-# Set ENTRYPOINT to allow user input
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Keep container running by default
+ENTRYPOINT ["sh", "-c", "sleep infinity"]
+CMD ["java", "-jar", "app.jar"]

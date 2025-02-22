@@ -1,11 +1,21 @@
 - name: Deploy Scientific Calculator
   hosts: localhost
   become: false
-
   tasks:
-    - name: Pull Docker Image
+
+    - name: Pull Latest Docker Image
       command: docker pull prabhav49/scientific-calculator:latest
 
-    - name: Run Scientific Calculator Container
-      command: docker run it -d prabhav49/scientific-calculator:latest 1 2 4
+    - name: Stop and Remove Existing Container
+      command: docker rm -f scientific_calculator
+      ignore_errors: yes
 
+    - name: Remove Old Docker Images (Optional)
+      shell: docker images -q prabhav49/scientific-calculator | xargs -r docker rmi -f
+      ignore_errors: yes
+
+    - name: Run Scientific Calculator Container
+      command: >
+        docker run -d --name scientific_calculator 
+        prabhav49/scientific-calculator:latest 
+        java -jar app.jar 1 4 2
