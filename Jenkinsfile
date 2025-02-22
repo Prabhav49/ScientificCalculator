@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'prabhav49/scientific-calculator:latest'
+        ANSIBLE_PLAYBOOK = 'deploy.yml'  // Define the Ansible playbook file
     }
 
     stages {
@@ -44,9 +45,9 @@ pipeline {
             }
         }
 
-        stage('Run Application') {
+        stage('Deploy with Ansible') {
             steps {
-                sh 'docker run --rm $DOCKER_IMAGE 1 25 0'
+                sh 'ansible-playbook $ANSIBLE_PLAYBOOK'
             }
         }
     }
@@ -56,7 +57,7 @@ pipeline {
             emailext(
                 to: 'iam49smith@gmail.com',
                 subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<p>The build was <b>successful!</b></p>
+                body: """<p>The build and deployment were <b>successful!</b></p>
                          <p>Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>"""
             )
         }
@@ -64,7 +65,7 @@ pipeline {
             emailext(
                 to: 'iam49smith@gmail.com',
                 subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<p>The build <b>failed!</b></p>
+                body: """<p>The build or deployment <b>failed!</b></p>
                          <p>Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>"""
             )
         }

@@ -1,0 +1,10 @@
+- name: Deploy Scientific Calculator
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Pull Docker Image
+      command: docker pull prabhav49/scientific-calculator:latest
+
+    - name: Run Scientific Calculator Container
+      command: docker run --rm prabhav49/scientific-calculator:latest 1
