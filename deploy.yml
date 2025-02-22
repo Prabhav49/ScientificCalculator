@@ -1,6 +1,5 @@
 - name: Deploy Scientific Calculator
   hosts: localhost
-  become: true
 
   tasks:
     - name: Pull Docker Image
