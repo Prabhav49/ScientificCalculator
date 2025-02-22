@@ -7,5 +7,5 @@
       command: docker pull prabhav49/scientific-calculator:latest
 
     - name: Run Scientific Calculator Container
-      command: docker run -d prabhav49/scientific-calculator:latest 1 2 4
+      command: docker run it -d prabhav49/scientific-calculator:latest 1 2 4
 
