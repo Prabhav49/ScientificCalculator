@@ -47,7 +47,7 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-                sh 'ansible-playbook --connection=local deploy.yml --become=false'
+                sh 'ansible-playbook --connection=local --become deploy.yml'
             }
         }
 
