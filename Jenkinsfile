@@ -45,16 +45,27 @@ pipeline {
             }
         }
 
-        stage('Deploy with Ansible') {
-            steps {
-                script {
-                    def deployStatus = sh(script: 'ansible-playbook --connection=local --become deploy.yml', returnStatus: true)
-                    if (deployStatus != 0) {
-                        error "Deployment failed!"
+//         stage('Deploy with Ansible') {
+//                     steps {
+//                         script {
+//                             def deployStatus = sh(script: 'ansible-playbook --connection=local --become deploy.yml', returnStatus: true)
+//                             if (deployStatus != 0) {
+//                                 error "Deployment failed!"
+//                             }
+//                         }
+//                     }
+//                 }
+
+        stage('Run Ansible Playbook') {
+                    steps {
+                        script {
+                            ansiblePlaybook(
+                                playbook: 'deploy.yml',
+                                inventory: 'inventory'
+                            )
+                        }
                     }
                 }
-            }
-        }
 
     }
 

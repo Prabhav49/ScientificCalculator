@@ -1,5 +1,6 @@
 - name: Deploy Scientific Calculator
   hosts: localhost
+  remote_user: prabhav
   become: false
   tasks:
 
