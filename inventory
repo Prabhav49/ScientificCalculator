@@ -1,4 +1,4 @@
 ansible_host=localhost
 ansible_user=prabhav
-ansible_ssh_pass=975412
+ansible_ssh_pass=!vault_ansible_ssh_pass
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'

@@ -57,15 +57,21 @@ pipeline {
 //                 }
 
         stage('Run Ansible Playbook') {
-                    steps {
-                        script {
-                            ansiblePlaybook(
-                                playbook: 'deploy.yml',
-                                inventory: 'inventory'
-                            )
-                        }
+            steps {
+                withCredentials([string(credentialsId: 'ansible-vault-password', variable: 'VAULT_PASS')]) {
+                    script {
+                        ansiblePlaybook(
+                            playbook: 'deploy.yml',
+                            inventory: 'inventory',
+                            extraVars: [
+                                ansible_ssh_pass: "!vault_ansible_ssh_pass"
+                            ],
+                            vaultCredentialsId: 'ansible-vault-password'
+                        )
                     }
                 }
+            }
+        }
 
     }
 
