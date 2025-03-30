@@ -11,10 +11,6 @@
       command: docker rm -f scientific_calculator
       ignore_errors: yes
 
-    - name: Remove Old Docker Images (Optional)
-      shell: docker images -q prabhav49/scientific-calculator | xargs -r docker rmi -f
-      ignore_errors: yes
-
     - name: Run Scientific Calculator Container
       command: >
         docker run -d --name scientific_calculator 
