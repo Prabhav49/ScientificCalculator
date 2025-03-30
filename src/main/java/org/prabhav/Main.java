@@ -24,7 +24,7 @@ public class Main {
             double num1 = scanner.nextDouble();
 
             double num2 = 0;
-            if (choice == 4) {  // Only Power operation needs num2
+            if (choice == 4) { 
                 System.out.print("Enter num2: ");
                 num2 = scanner.nextDouble();
             }
