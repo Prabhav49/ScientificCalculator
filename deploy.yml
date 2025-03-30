@@ -19,4 +19,4 @@
       command: >
         docker run -d --name scientific_calculator 
         prabhav49/scientific-calculator:latest 
-        java -jar app.jar 1 4 2
+        java -jar app.jar 
